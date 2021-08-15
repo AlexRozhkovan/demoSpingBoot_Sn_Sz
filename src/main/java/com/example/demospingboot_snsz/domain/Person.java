@@ -16,7 +16,7 @@ public class Person {
     
     private String phoneNumber;
     
-    @ManyToOne()
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "contactperson_fk")
     private Supplier supplier;
     

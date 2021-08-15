@@ -1,12 +1,13 @@
 package com.example.demospingboot_snsz.domain;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name = "SUPPLIERS")
-public class Supplier extends Object{
-
+public class Supplier
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
@@ -16,13 +17,23 @@ public class Supplier extends Object{
     @Column(name = "is_deleted")
     private Boolean isDeleted = Boolean.FALSE;
     
-    @OneToMany(mappedBy="supplier", cascade = CascadeType.ALL)
-    private Set <Person> person;
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="supplier", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Collection <Person> contactperson_fk;
+    
+    public Collection <Person> getContactperson_fk()
+    {
+        return contactperson_fk;
+    }
+    
+    public void setContactperson_fk( Collection <Person> contactperson_fk )
+    {
+        this.contactperson_fk = contactperson_fk;
+    }
+    
+    @OneToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "address_fk")
     private Address address;
-
+    
     public Address getAddress() {
         return address;
     }
