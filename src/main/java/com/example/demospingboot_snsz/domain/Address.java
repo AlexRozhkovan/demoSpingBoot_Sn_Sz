@@ -18,11 +18,11 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Supplier supplier;
 
-    public Supplier getEmployee() {
+    public Supplier getSupplier() {
         return supplier;
     }
 
-    public void setEmployee(Supplier supplier) {
+    public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
 

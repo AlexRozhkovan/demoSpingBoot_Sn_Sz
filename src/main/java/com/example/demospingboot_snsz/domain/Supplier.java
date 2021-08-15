@@ -1,10 +1,11 @@
 package com.example.demospingboot_snsz.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "SUPPLIERS")
-public class Supplier {
+public class Supplier extends Object{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -14,6 +15,9 @@ public class Supplier {
 
     @Column(name = "is_deleted")
     private Boolean isDeleted = Boolean.FALSE;
+    
+    @OneToMany(mappedBy="supplier", cascade = CascadeType.ALL)
+    private Set <Person> person;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_fk")
