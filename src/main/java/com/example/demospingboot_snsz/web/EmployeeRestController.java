@@ -58,8 +58,6 @@ public class EmployeeRestController {
         return repository.findById(id)
                 .map(entity -> {
                     entity.setName(supplier.getName());
-                    entity.setEmail(supplier.getEmail());
-                    entity.setCountry(supplier.getCountry());
                     return repository.save(entity);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
