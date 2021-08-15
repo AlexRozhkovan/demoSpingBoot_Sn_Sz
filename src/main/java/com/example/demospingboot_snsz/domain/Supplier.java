@@ -17,7 +17,8 @@ public class Supplier
     @Column( name = "is_deleted" )
     private Boolean isDeleted = Boolean.FALSE;
     
-    @OneToMany( mappedBy = "supplier",
+    @OneToMany( targetEntity = Person.class,
+                mappedBy= "supplier",
                 cascade = CascadeType.ALL,
                 fetch = FetchType.EAGER )
     private Collection <Person> contactperson_fk;

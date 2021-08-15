@@ -11,5 +11,4 @@ public class DemoSpingBootSnSzApplication
     {
         SpringApplication.run( DemoSpingBootSnSzApplication.class , args );
     }
-    
 }
