@@ -1,7 +1,7 @@
 package com.example.demospingboot_snsz.web;
 
-import com.example.demospingboot_snsz.domain.Employee;
-import com.example.demospingboot_snsz.domain.EmployeeRepository;
+import com.example.demospingboot_snsz.domain.Supplier;
+import com.example.demospingboot_snsz.domain.SupplierRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -13,24 +13,24 @@ import java.util.List;
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EmployeeRestController {
 
-    private final EmployeeRepository repository;
+    private final SupplierRepository repository;
 
-    public EmployeeRestController(EmployeeRepository repository) {
+    public EmployeeRestController(SupplierRepository repository) {
         this.repository = repository;
     }
     
     //Операция сохранения юзера в базу данных
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee saveEmployee(@RequestBody Employee employee) {
+    public Supplier saveEmployee(@RequestBody Supplier supplier) {
 
-        return repository.save(employee);
+        return repository.save(supplier);
     }
 
     //Получение списка юзеров
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
-    public List<Employee> getAllUsers() {
+    public List<Supplier> getAllUsers() {
 
         return repository.findAll();
     }
@@ -38,31 +38,31 @@ public class EmployeeRestController {
     //Получения юзера по id
     @GetMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Employee getEmployeeById(@PathVariable long id) {
+    public Supplier getEmployeeById(@PathVariable long id) {
 
-        Employee employee = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Employee not found with id = " + id));
+        Supplier supplier = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
 
-        if (employee.getIsDeleted()) {
-            throw new EntityNotFoundException("Employee was deleted with id = " + id);
+        if (supplier.getIsDeleted()) {
+            throw new EntityNotFoundException("Supplier was deleted with id = " + id);
         }
 
-        return employee;
+        return supplier;
     }
 
     //Обновление юзера
     @PutMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Employee refreshEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
+    public Supplier refreshEmployee(@PathVariable("id") long id, @RequestBody Supplier supplier) {
 
         return repository.findById(id)
                 .map(entity -> {
-                    entity.setName(employee.getName());
-                    entity.setEmail(employee.getEmail());
-                    entity.setCountry(employee.getCountry());
+                    entity.setName(supplier.getName());
+                    entity.setEmail(supplier.getEmail());
+                    entity.setCountry(supplier.getCountry());
                     return repository.save(entity);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("Employee not found with id = " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
     }
 
     //Удаление по id
@@ -71,11 +71,11 @@ public class EmployeeRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeEmployeeById(@PathVariable long id) {
         repository.findById(id)
-                .map(employee -> {
-                    employee.setIsDeleted(Boolean.TRUE);
-                    return repository.save(employee);
+                .map(supplier -> {
+                    supplier.setIsDeleted(Boolean.TRUE);
+                    return repository.save(supplier);
                 })
-                .orElseThrow(() -> new EntityNotFoundException("Employee not found with id = " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
     }
 
     //Удаление всех юзеров

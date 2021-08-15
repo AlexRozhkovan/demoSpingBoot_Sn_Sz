@@ -16,14 +16,14 @@ public class Address {
     private String zipCode;
 
     @OneToOne(mappedBy = "address")
-    private Employee employee;
+    private Supplier supplier;
 
-    public Employee getEmployee() {
-        return employee;
+    public Supplier getEmployee() {
+        return supplier;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setEmployee(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public long getId() {

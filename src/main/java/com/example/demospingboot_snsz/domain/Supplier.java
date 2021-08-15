@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class Employee {
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
