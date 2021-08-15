@@ -19,24 +19,24 @@ public class EmployeeRestController {
         this.repository = repository;
     }
     
-    //Операция сохранения юзера в базу данных
-    @PostMapping("/users")
+    //Операция сохранения поставщика в базу данных
+    @PostMapping("/SUPPLIERS")
     @ResponseStatus(HttpStatus.CREATED)
     public Supplier saveEmployee(@RequestBody Supplier supplier) {
 
         return repository.save(supplier);
     }
 
-    //Получение списка юзеров
-    @GetMapping("/users")
+    //Получение списка поставщикoB
+    @GetMapping("/SUPPLIERS")
     @ResponseStatus(HttpStatus.OK)
     public List<Supplier> getAllUsers() {
 
         return repository.findAll();
     }
 
-    //Получения юзера по id
-    @GetMapping("/users/{id}")
+    //Получение поставщика по id
+    @GetMapping("/SUPPLIERS/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Supplier getEmployeeById(@PathVariable long id) {
 
@@ -50,8 +50,8 @@ public class EmployeeRestController {
         return supplier;
     }
 
-    //Обновление юзера
-    @PutMapping("/users/{id}")
+    //Обновление поставщика
+    @PutMapping("/SUPPLIERS/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Supplier refreshEmployee(@PathVariable("id") long id, @RequestBody Supplier supplier) {
 
@@ -63,9 +63,9 @@ public class EmployeeRestController {
                 .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
     }
 
-    //Удаление по id
-    //@DeleteMapping("/users/{id}")
-    @PatchMapping("/users/{id}")
+    //Удаление поставщика по id
+    //@DeleteMapping("/SUPPLIERS/{id}")
+    @PatchMapping("/SUPPLIERS/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeEmployeeById(@PathVariable long id) {
         repository.findById(id)
@@ -76,8 +76,8 @@ public class EmployeeRestController {
                 .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
     }
 
-    //Удаление всех юзеров
-    @DeleteMapping("/users")
+    //Удаление всех поставщиков
+    @DeleteMapping("/SUPPLIERS")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeAllUsers() {
         repository.deleteAll();

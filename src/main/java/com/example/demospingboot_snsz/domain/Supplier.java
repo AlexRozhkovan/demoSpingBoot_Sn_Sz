@@ -3,7 +3,7 @@ package com.example.demospingboot_snsz.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "SUPPLIERS")
 public class Supplier {
 
     @Id
