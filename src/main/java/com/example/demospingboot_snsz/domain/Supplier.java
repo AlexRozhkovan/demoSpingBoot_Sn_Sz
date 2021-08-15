@@ -12,8 +12,6 @@ public class Supplier {
 
     private String name;
 
-    private String email;
-
     @Column(name = "is_deleted")
     private Boolean isDeleted = Boolean.FALSE;
 
@@ -43,14 +41,6 @@ public class Supplier {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Boolean getIsDeleted() {
