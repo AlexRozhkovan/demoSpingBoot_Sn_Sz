@@ -1,5 +1,8 @@
 package com.example.demospingboot_snsz.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,18 +18,6 @@ public class Person {
     private String lastName;
     
     private String phoneNumber;
-    
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "contactperson_fk")
-    private Supplier supplier;
-    
-    public Supplier getSupplier() {
-        return supplier;
-    }
-    
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
     
     public long getId() {
         return id;

@@ -1,8 +1,9 @@
 package com.example.demospingboot_snsz.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table( name = "SUPPLIERS" )
@@ -17,44 +18,22 @@ public class Supplier
     @Column( name = "is_deleted" )
     private Boolean isDeleted = Boolean.FALSE;
     
-    @OneToMany( targetEntity = Person.class,
-                mappedBy= "supplier",
-                cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER )
-    private Collection <Person> contactperson_fk;
-    
-    public Collection <Person> getContactperson_fk()
-    {
-        return contactperson_fk;
-    }
-    
-    public void setContactperson_fk( Collection <Person> contactperson_fk )
-    {
-        this.contactperson_fk = contactperson_fk;
-    }
+    @OneToMany( fetch = FetchType.EAGER )
+    @JoinColumn(name = "person_fk")
+    private final List <Person> personsList = new ArrayList <>();
     
     @OneToOne( cascade = CascadeType.ALL )
     @JoinColumn( name = "address_fk" )
     private Address address;
     
-    public Address getAddress()
+    public Boolean getDeleted()
     {
-        return address;
+        return isDeleted;
     }
     
-    public void setAddress( Address address )
+    public void setDeleted( Boolean deleted )
     {
-        this.address = address;
-    }
-    
-    public Long getId()
-    {
-        return id;
-    }
-    
-    public void setId( Long id )
-    {
-        this.id = id;
+        isDeleted = deleted;
     }
     
     public String getName()
@@ -67,13 +46,18 @@ public class Supplier
         this.name = name;
     }
     
-    public Boolean getIsDeleted()
+    public List <Person> getPersonsList()
     {
-        return isDeleted;
+        return personsList;
     }
     
-    public void setIsDeleted( Boolean deleted )
+    public Address getAddress()
     {
-        isDeleted = deleted;
+        return address;
+    }
+    
+    public void setAddress( Address address )
+    {
+        this.address = address;
     }
 }

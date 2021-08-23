@@ -22,7 +22,7 @@ public class EmployeeRestController {
     //Операция сохранения поставщика в базу данных
     @PostMapping("/SUPPLIERS")
     @ResponseStatus(HttpStatus.CREATED)
-    public Supplier saveEmployee(@RequestBody Supplier supplier) {
+    public Supplier saveSupplier(@RequestBody Supplier supplier) {
 
         return repository.save(supplier);
     }
@@ -38,12 +38,12 @@ public class EmployeeRestController {
     //Получение поставщика по id
     @GetMapping("/SUPPLIERS/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Supplier getEmployeeById(@PathVariable long id) {
+    public Supplier getSupplierById(@PathVariable long id) {
 
         Supplier supplier = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
 
-        if (supplier.getIsDeleted()) {
+        if (supplier.getDeleted()) {
             throw new EntityNotFoundException("Supplier was deleted with id = " + id);
         }
 
@@ -53,7 +53,7 @@ public class EmployeeRestController {
     //Обновление поставщика
     @PutMapping("/SUPPLIERS/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Supplier refreshEmployee(@PathVariable("id") long id, @RequestBody Supplier supplier) {
+    public Supplier refreshSupplier(@PathVariable("id") long id, @RequestBody Supplier supplier) {
 
         return repository.findById(id)
                 .map(entity -> {
@@ -67,10 +67,10 @@ public class EmployeeRestController {
     //@DeleteMapping("/SUPPLIERS/{id}")
     @PatchMapping("/SUPPLIERS/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeEmployeeById(@PathVariable long id) {
+    public void removeSupplierById(@PathVariable long id) {
         repository.findById(id)
                 .map(supplier -> {
-                    supplier.setIsDeleted(Boolean.TRUE);
+                    supplier.setDeleted(Boolean.TRUE);
                     return repository.save(supplier);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
@@ -79,7 +79,7 @@ public class EmployeeRestController {
     //Удаление всех поставщиков
     @DeleteMapping("/SUPPLIERS")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void removeAllUsers() {
+    public void removeAllSuppliers() {
         repository.deleteAll();
     }
 }
