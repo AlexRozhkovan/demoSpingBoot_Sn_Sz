@@ -1,14 +1,11 @@
 package com.example.demospingboot_snsz.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
-public class Person {
-    
+@Table(name = "persons")
+public class Person
+{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;

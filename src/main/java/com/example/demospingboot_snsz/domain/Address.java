@@ -15,6 +15,9 @@ public class Address {
     private String city;
 
     private String zipCode;
+    
+    @Column( name = "is_deleted" )
+    private Boolean isDeleted = Boolean.FALSE;
 
     @OneToOne(mappedBy = "address")
     private Supplier supplier;
@@ -26,7 +29,17 @@ public class Address {
     public void setSupplier(Supplier supplier) {
         this.supplier = supplier;
     }
-
+    
+    public Boolean getDeleted()
+    {
+        return isDeleted;
+    }
+    
+    public void setDeleted( Boolean deleted )
+    {
+        isDeleted = deleted;
+    }
+    
     public long getId() {
         return id;
     }

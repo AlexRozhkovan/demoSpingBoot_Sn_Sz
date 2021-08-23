@@ -1,7 +1,5 @@
 package com.example.demospingboot_snsz.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.*;
 
@@ -20,9 +18,19 @@ public class Supplier
     
     @OneToMany( fetch = FetchType.EAGER )
     @JoinColumn(name = "person_fk")
-    private final List <Person> personsList = new ArrayList <>();
+    private List <Person> personsList = new ArrayList <>();
     
-    @OneToOne( cascade = CascadeType.ALL )
+    public void setPersonsList( List <Person> personList )
+    {
+         this.personsList = personList;
+    }
+    
+    public List <Person> getPersonsList()
+    {
+        return personsList;
+    }
+    
+    @OneToOne
     @JoinColumn( name = "address_fk" )
     private Address address;
     
@@ -31,9 +39,9 @@ public class Supplier
         return isDeleted;
     }
     
-    public void setDeleted( Boolean deleted )
+    public void setDeleted( Boolean isDeleted )
     {
-        isDeleted = deleted;
+        this.isDeleted = isDeleted;
     }
     
     public String getName()
@@ -44,11 +52,6 @@ public class Supplier
     public void setName( String name )
     {
         this.name = name;
-    }
-    
-    public List <Person> getPersonsList()
-    {
-        return personsList;
     }
     
     public Address getAddress()
