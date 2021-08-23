@@ -5,7 +5,6 @@ import com.example.demospingboot_snsz.domain.PersonRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
