@@ -2,6 +2,7 @@ package com.example.demospingboot_snsz.domain;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table( name = "addresses" )
 public class Address

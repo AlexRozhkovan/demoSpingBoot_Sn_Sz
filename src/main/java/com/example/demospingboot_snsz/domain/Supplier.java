@@ -13,24 +13,20 @@ public class Supplier
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private long id;
     
-    public long getId()
-    {
-        return id;
-    }
-    
-    public void setId( long id )
-    {
-        this.id = id;
-    }
-    
     private String name;
     
     @Column( name = "is_deleted" )
     private Boolean isDeleted = Boolean.FALSE;
     
-    @OneToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany( fetch = FetchType.EAGER,
+                cascade = CascadeType.ALL )
     @JoinColumn( name = "person_fk" )
     private List <Person> personsList = new ArrayList <>();
+    
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "address_fk" )
+    @JsonIgnore
+    private Address address;
     
     public void setPersonsList( List <Person> personList )
     {
@@ -42,10 +38,15 @@ public class Supplier
         return personsList;
     }
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn( name = "address_fk" )
-    @JsonIgnore
-    private Address address;
+    public long getId()
+    {
+        return id;
+    }
+    
+    public void setId( long id )
+    {
+        this.id = id;
+    }
     
     public Boolean getDeleted()
     {
@@ -75,5 +76,13 @@ public class Supplier
     public void setAddress( Address address )
     {
         this.address = address;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return String.format( "[id = %d, name = %s,\nadress = %s\n\t%s\nisDeleted = %b]" , getId() ,
+                              getName() , getAddress() , getPersonsList().toString() ,
+                              getDeleted() );
     }
 }
