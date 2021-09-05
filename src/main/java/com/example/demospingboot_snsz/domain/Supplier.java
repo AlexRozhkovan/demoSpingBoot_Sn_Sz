@@ -78,11 +78,12 @@ public class Supplier
         this.address = address;
     }
     
+    /*
     @Override
     public String toString()
     {
         return String.format( "[id = %d, name = %s,\nadress = %s\n\t%s\nisDeleted = %b]" , getId() ,
                               getName() , getAddress() , getPersonsList().toString() ,
                               getDeleted() );
-    }
+    }*/
 }
