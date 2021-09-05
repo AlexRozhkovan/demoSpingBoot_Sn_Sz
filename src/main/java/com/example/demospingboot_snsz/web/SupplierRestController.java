@@ -84,7 +84,6 @@ public class SupplierRestController
                                    entity.setName( supplier.getName() );
                                    entity.setAddress( supplier.getAddress() );
                                    entity.setPersonsList( supplier.getPersonsList() );
-                                   entity.setDeleted( supplier.getDeleted() );
                                    return repository.save( entity );
                                } )
                          .orElseThrow( () -> new EntityNotFoundException(
@@ -93,7 +92,7 @@ public class SupplierRestController
     
     //Удаление поставщика по id
     @DeleteMapping( "/SUPPLIERS/{id}" )
-    @ResponseStatus( HttpStatus.NO_CONTENT )
+    @ResponseStatus( HttpStatus.I_AM_A_TEAPOT )
     public void removeSupplierById(
             @PathVariable
                     long id )
@@ -110,7 +109,7 @@ public class SupplierRestController
     
     //Удаление всех поставщиков
     @DeleteMapping( "/SUPPLIERS" )
-    @ResponseStatus( HttpStatus.OK )
+    @ResponseStatus( HttpStatus.I_AM_A_TEAPOT)
     public void removeAllSuppliers()
     {
         repository.findAll().forEach( supplier ->
