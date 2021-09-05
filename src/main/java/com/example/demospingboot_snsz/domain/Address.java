@@ -11,6 +11,7 @@ public class Address
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private long id;
     
+    
     @Column( name = "is_deleted" )
     private Boolean isDeleted = Boolean.FALSE;
     
