@@ -69,7 +69,7 @@ public class SupplierRestController
     }
     
     //Обновление поставщика
-    @PutMapping( "/SUPPLIERS/{id}" )
+    @PatchMapping( "/SUPPLIERS/{id}" )
     @ResponseStatus( HttpStatus.OK )
     public Supplier refreshSupplier(
             @PathVariable( "id" )
