@@ -18,15 +18,15 @@ public class Supplier
     @Column( name = "is_deleted" )
     private Boolean isDeleted = Boolean.FALSE;
     
+    @OneToOne( cascade = CascadeType.ALL )
+    @JoinColumn( name = "address_fk" )
+    private Address address;
+    
     @OneToMany( fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL )
+                cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn( name = "person_fk" )
     private List <Person> personsList = new ArrayList <>();
     
-    @OneToOne( cascade = CascadeType.ALL )
-    @JoinColumn( name = "address_fk" )
-    @JsonIgnore
-    private Address address;
     
     public void setPersonsList( List <Person> personList )
     {

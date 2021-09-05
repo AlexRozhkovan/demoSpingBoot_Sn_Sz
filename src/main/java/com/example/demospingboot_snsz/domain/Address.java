@@ -1,5 +1,7 @@
 package com.example.demospingboot_snsz.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -11,7 +13,6 @@ public class Address
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private long id;
     
-    
     @Column( name = "is_deleted" )
     private Boolean isDeleted = Boolean.FALSE;
     
@@ -22,6 +23,7 @@ public class Address
     private String zipCode;
     
     @OneToOne( mappedBy = "address" )
+    @JsonIgnore
     private Supplier supplier;
     
     public long getId()

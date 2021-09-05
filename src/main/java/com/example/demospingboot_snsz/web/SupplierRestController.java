@@ -72,6 +72,9 @@ public class SupplierRestController
                          .map( entity ->
                                {
                                    entity.setName( supplier.getName() );
+                                   entity.setAddress( supplier.getAddress() );
+                                   entity.setPersonsList( supplier.getPersonsList() );
+                                   entity.setDeleted( supplier.getDeleted() );
                                    return repository.save( entity );
                                } )
                          .orElseThrow( () -> new EntityNotFoundException(
@@ -98,7 +101,7 @@ public class SupplierRestController
     
     //Удаление всех поставщиков
     @DeleteMapping( "/SUPPLIERS" )
-    @ResponseStatus( HttpStatus.NO_CONTENT )
+    @ResponseStatus( HttpStatus.PAYMENT_REQUIRED )
     public void removeAllSuppliers()
     {
         repository.deleteAll();
