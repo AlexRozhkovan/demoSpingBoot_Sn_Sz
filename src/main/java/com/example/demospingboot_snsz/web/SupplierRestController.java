@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,16 @@ public class SupplierRestController
     @ResponseStatus( HttpStatus.OK )
     public List <Supplier> getAllSuppliers()
     {
-        return repository.findAll();
+        List <Supplier> lst = repository.findAll();
+        for ( int i = 0 ; i < lst.toArray().length ; i++ )
+        {
+            if ( lst.get( i ).getDeleted() )
+            {
+                lst.remove( i );
+                i--;
+            }
+        }
+        return lst;
     }
     
     //Получение поставщика по id
@@ -82,8 +92,7 @@ public class SupplierRestController
     }
     
     //Удаление поставщика по id
-    //@DeleteMapping("/SUPPLIERS/{id}")
-    @PatchMapping( "/SUPPLIERS/{id}" )
+    @DeleteMapping( "/SUPPLIERS/{id}" )
     @ResponseStatus( HttpStatus.NO_CONTENT )
     public void removeSupplierById(
             @PathVariable
@@ -101,9 +110,14 @@ public class SupplierRestController
     
     //Удаление всех поставщиков
     @DeleteMapping( "/SUPPLIERS" )
-    @ResponseStatus( HttpStatus.PAYMENT_REQUIRED )
+    @ResponseStatus( HttpStatus.OK )
     public void removeAllSuppliers()
     {
-        repository.deleteAll();
+        repository.findAll().forEach( supplier ->
+                                      {
+                                          supplier.setDeleted( Boolean.TRUE );
+                                          repository.save( supplier );
+                                      }
+                                    );
     }
 }
