@@ -1,4 +1,4 @@
-package com.example.demospingboot_snsz;
+package com.AlexRozhkovan.demospingboot_snsz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
