@@ -1,11 +1,11 @@
-package com.AlexRozhkovan.demospingboot_snsz.web;
+package com.AlexRozhkovan.demospingboot_snsz.web.SupplierController;
 
 import com.AlexRozhkovan.demospingboot_snsz.config.mapper.SupplierMapper;
 import com.AlexRozhkovan.demospingboot_snsz.domain.Supplier;
-import com.AlexRozhkovan.demospingboot_snsz.dto.supplierDTO.SupplierGetDTO;
+import com.AlexRozhkovan.demospingboot_snsz.dto.supplierDTO.SupplierReadDTO;
 import com.AlexRozhkovan.demospingboot_snsz.dto.supplierDTO.SupplierCreateDTO;
 import com.AlexRozhkovan.demospingboot_snsz.service.supplierService.SupplierService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,34 +14,40 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api",
         produces = MediaType.APPLICATION_JSON_VALUE)
-public class SupplierRestControllerImpl implements SupplierRestController {
+public class SupplierControllerImpl implements SupplierController {
 
 
     private final SupplierService supplierService;
 
-    public SupplierRestControllerImpl(SupplierService supplierService)
+    public SupplierControllerImpl(SupplierService supplierService)
     {
         this.supplierService = supplierService;
     }
 
     @Override
+    @GetMapping("/suppliers")
+    @ResponseStatus(HttpStatus.OK)
     public List<Supplier> getAll()
     {
         return supplierService.getAllSuppliers();
     }
 
     @Override
-    public SupplierGetDTO getById(@PathVariable long id)
+    @GetMapping("/suppliers/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public SupplierReadDTO getById(@PathVariable long id)
     {
         Supplier supplier = supplierService.getSupplierById(id);
-        return SupplierMapper.INSTANCE.toGetDTO(supplier);
+        return SupplierMapper.INSTANCE.toReadDTO(supplier);
     }
 
     @Override
+    @PostMapping("/suppliers")
+    @ResponseStatus(HttpStatus.CREATED)
     public SupplierCreateDTO saveSupplier(@RequestBody SupplierCreateDTO requestForSave)
     {
-        Supplier supplier = SupplierMapper.INSTANCE.toSupplier1(requestForSave);
-        return SupplierMapper.INSTANCE.toSetDTO(supplierService.saveSupplier(supplier));
+        Supplier supplier = SupplierMapper.INSTANCE.toReadSupplier(requestForSave);
+        return SupplierMapper.INSTANCE.toSaveDTO(supplierService.saveSupplier(supplier));
     }
 
 }

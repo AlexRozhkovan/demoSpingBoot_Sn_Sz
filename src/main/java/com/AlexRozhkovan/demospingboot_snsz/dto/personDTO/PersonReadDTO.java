@@ -2,7 +2,7 @@ package com.AlexRozhkovan.demospingboot_snsz.dto.personDTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-public class PersonGetDTO {
+public class PersonReadDTO {
 
     @Schema(description = "Id of the person.",
             example = "33",

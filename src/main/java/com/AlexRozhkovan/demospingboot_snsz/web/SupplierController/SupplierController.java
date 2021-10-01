@@ -1,31 +1,25 @@
-package com.AlexRozhkovan.demospingboot_snsz.web;
+package com.AlexRozhkovan.demospingboot_snsz.web.SupplierController;
 
 import com.AlexRozhkovan.demospingboot_snsz.domain.Supplier;
-import com.AlexRozhkovan.demospingboot_snsz.dto.supplierDTO.SupplierGetDTO;
+import com.AlexRozhkovan.demospingboot_snsz.dto.supplierDTO.SupplierReadDTO;
 import com.AlexRozhkovan.demospingboot_snsz.dto.supplierDTO.SupplierCreateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/default")
-public interface SupplierRestController {
+public interface SupplierController {
 
-    @GetMapping("/suppliers")
     @Operation(summary = "Get all Suppliers", description = "endpoint for getting all suppliers", tags = {"Supplier"})
-    @ResponseStatus(HttpStatus.OK)
     List<Supplier> getAll();
 
-    @GetMapping("/suppliers/{id}")
     @Operation(summary = "Get supplier by Id", description = "endpoint for getting supplier by ID", tags = {"Supplier"})
-    @ResponseStatus(HttpStatus.OK)
-    SupplierGetDTO getById(@PathVariable long id);
+    SupplierReadDTO getById(@PathVariable long id);
 
-    @PostMapping("/suppliers")
-    @ResponseStatus(HttpStatus.CREATED)
+
     @Operation(summary = "Add a new supplier", description = "endpoint for creating an supplier", tags = {"Supplier"})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Supplier created"),
@@ -37,6 +31,7 @@ public interface SupplierRestController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add a new Person", description = "endpoint for creating an Person", tags = {"Person"})
     @ApiResponses(value = {
+            @ApiResponse(responseCode = "409", description = "Person already exists"),
             @ApiResponse(responseCode = "201", description = "Person created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
@@ -46,6 +41,7 @@ public interface SupplierRestController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add a new Address", description = "endpoint for creating an Address", tags = {"Address"})
     @ApiResponses(value = {
+            @ApiResponse(responseCode = "409", description = "Address already exists"),
             @ApiResponse(responseCode = "201", description = "Address created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })

@@ -2,12 +2,8 @@ package com.AlexRozhkovan.demospingboot_snsz.dto.addressDTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-public class AddressGetDTO {
+public class AddressUpdateDTO {
 
-    @Schema(description = "Id of the Address.",
-            example = "33",
-            required = true)
-    private long id;
     @Schema(description = "Country of the Supplier.",
             example = "Georg",
             required = true)
@@ -20,16 +16,6 @@ public class AddressGetDTO {
             example = " 8-800-555-35-35",
             required = true)
     private String zipCode;
-
-    public long getId()
-    {
-        return id;
-    }
-
-    public void setId(long id)
-    {
-        this.id = id;
-    }
 
     public String getCountry()
     {

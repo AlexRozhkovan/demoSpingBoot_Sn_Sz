@@ -4,7 +4,7 @@ import com.AlexRozhkovan.demospingboot_snsz.domain.Address;
 import com.AlexRozhkovan.demospingboot_snsz.domain.Person;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-public class SupplierGetDTO {
+public class SupplierReadDTO {
 
     @Schema(description = "Id of the supplier.",
             example = "33",

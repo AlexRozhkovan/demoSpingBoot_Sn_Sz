@@ -4,18 +4,16 @@ import com.AlexRozhkovan.demospingboot_snsz.domain.Address;
 import com.AlexRozhkovan.demospingboot_snsz.domain.Person;
 import io.swagger.v3.oas.annotations.media.Schema;
 
+public class SupplierUpdateDTO {
 
-public class SupplierCreateDTO {
     @Schema(description = "Name of the supplier.",
             example = "Georg",
             required = true)
     private String name;
-
     @Schema(description = "Address name of the supplier.",
             example = "#4 Address",
             required = true)
     private Address address;
-
     @Schema(description = "Person of the supplier.",
             example = " #1 Person",
             required = true)
