@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping( value = "/api",
-                 produces = MediaType.APPLICATION_JSON_VALUE )
-public class SupplierRestControllerImpl implements SupplierRestController{
+@RequestMapping(value = "/api",
+        produces = MediaType.APPLICATION_JSON_VALUE)
+public class SupplierRestControllerImpl implements SupplierRestController {
 
 
     private final SupplierService supplierService;
@@ -25,18 +25,21 @@ public class SupplierRestControllerImpl implements SupplierRestController{
     }
 
     @Override
-    public List<Supplier> getAll() {
+    public List<Supplier> getAll()
+    {
         return supplierService.getAllSuppliers();
     }
 
     @Override
-    public SupplierGetDTO getById(@PathVariable long id) {
+    public SupplierGetDTO getById(@PathVariable long id)
+    {
         Supplier supplier = supplierService.getSupplierById(id);
         return SupplierMapper.INSTANCE.toGetDTO(supplier);
     }
 
     @Override
-    public SupplierCreateDTO saveSupplier(@RequestBody SupplierCreateDTO requestForSave) {
+    public SupplierCreateDTO saveSupplier(@RequestBody SupplierCreateDTO requestForSave)
+    {
         Supplier supplier = SupplierMapper.INSTANCE.toSupplier1(requestForSave);
         return SupplierMapper.INSTANCE.toSetDTO(supplierService.saveSupplier(supplier));
     }

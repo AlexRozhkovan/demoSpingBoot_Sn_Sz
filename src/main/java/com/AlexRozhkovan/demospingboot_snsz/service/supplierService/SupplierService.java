@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface SupplierService {
 
-
     /**
      * Save new supplier.
      *

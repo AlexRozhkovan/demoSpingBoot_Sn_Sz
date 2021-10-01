@@ -23,7 +23,8 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public Supplier saveSupplier(@RequestBody Supplier supplier) {
+    public Supplier saveSupplier(@RequestBody Supplier supplier)
+    {
         log.info("saveSupplier() - start: supplier = {}", supplier);
         var savedSupplier = repository.save(supplier);
         log.info("saveSupplier() - end: savedSupplier() = {}", savedSupplier.getId());
@@ -41,12 +42,14 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier getSupplierById(Long id)
-    {   log.info("repository.findById() - start");
+    {
+        log.info("repository.findById() - start");
         var supplier = repository.findById(id)
-                .orElseThrow(() ->  new EntityNotFoundException("Supplier not found with id = " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Supplier not found with id = " + id));
 
         if (supplier.getDeleted())
-        {   log.error("Supplier is Deleted - yes");
+        {
+            log.error("Supplier is Deleted - yes");
             throw new EntityNotFoundException("Supplier was deleted with id = " + id);
         }
         log.info("findById() - end");
@@ -67,7 +70,8 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier updateSupplier(Supplier supplier)
-    {   log.info("updateSupplier - succeed");
+    {
+        log.info("updateSupplier - succeed");
         return repository.findById(supplier.getId())
                 .map(entity -> {
                     entity.setName(supplier.getName());
@@ -80,7 +84,8 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void removeSupplierById(Long id)
-    {   log.info("removeSupplierById - succeed");
+    {
+        log.info("removeSupplierById - succeed");
         repository.findById(id)
                 .map(supplier -> {
                     supplier.setDeleted(Boolean.TRUE);
