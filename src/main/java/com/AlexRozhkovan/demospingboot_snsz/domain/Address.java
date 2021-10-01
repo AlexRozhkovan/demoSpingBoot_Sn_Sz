@@ -1,4 +1,4 @@
-package com.example.demospingboot_snsz.domain;
+package com.AlexRozhkovan.demospingboot_snsz.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

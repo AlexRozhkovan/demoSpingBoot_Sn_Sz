@@ -1,6 +1,4 @@
-package com.example.demospingboot_snsz.domain;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.AlexRozhkovan.demospingboot_snsz.domain;
 
 import javax.persistence.*;
 import java.util.*;
@@ -25,17 +23,17 @@ public class Supplier
     @OneToMany( fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn( name = "person_fk" )
-    private List <Person> personsList = new ArrayList <>();
+    private List <Person> persons = new ArrayList <>();
     
     
-    public void setPersonsList( List <Person> personList )
+    public void setPersons(List <Person> personList )
     {
-        personsList = personList;
+        persons = personList;
     }
     
-    public List <Person> getPersonsList()
+    public List <Person> getPersons()
     {
-        return personsList;
+        return persons;
     }
     
     public long getId()

@@ -1,4 +1,4 @@
-package com.example.demospingboot_snsz.domain;
+package com.AlexRozhkovan.demospingboot_snsz.domain;
 
 import javax.persistence.*;
 
@@ -10,7 +10,7 @@ public class Person
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private long id;
     
-    private String name;
+    private String firstName;
     
     private String lastName;
     
@@ -26,14 +26,14 @@ public class Person
         this.id = id;
     }
     
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
     }
     
-    public void setName( String name )
+    public void setFirstName(String name )
     {
-        this.name = name;
+        this.firstName = name;
     }
     
     public String getLastName()
